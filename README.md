@@ -17,6 +17,17 @@ A modern data engineering pipeline implementing the **Medallion Architecture** (
 | Containerization | Docker & Docker Compose |
 | Database | PostgreSQL (Airflow metadata) |
 
+
+----------------------------------------
+
+## NOTE : 
+follow the following <a href="https://github.com/BishoyOsama/DatabricksLogisticsLakehouse.git">link</a> for databricks repository that holds databricks code of bronze & silver layers of the architecture
+
+How it is aligned:
+
+<img src="github architecture.png" width="100%"/>
+
+
 ## Project Structure
 
 ```
