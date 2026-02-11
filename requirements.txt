@@ -1,0 +1,11 @@
+apache-airflow-providers-databricks==7.9.0
+databricks-sql-connector>=4.0.0
+pandas>=2.2.3
+kafka-python==2.0.2
+faker==20.1.0
+python-dateutil==2.8.2
+confluent-kafka>=2.3.0
+python-dotenv==1.2.1
+dbt-core>=1.11.2
+dbt-databricks>=1.11.4
+dbt-spark>=1.10.0

@@ -1,0 +1,33 @@
+
+
+sources:
+  - name: source_silver
+    description: The source tables of silver layer
+    database: workspace
+    schema: silver
+    tables:
+      - name: crm_cust_info
+        description: The source table of customers information in silver layer
+      
+      - name: crm_prd_info
+        description: The source table of products information in silver layer
+      
+      - name: crm_sales_details
+        description: The source table of orders in silver layer
+
+      - name: erp_cat_g1v2
+        description: The source table of product categories in silver layer
+      
+      - name: erp_cust_az12
+        description: The source table of customers personal details in silver layer
+      
+      - name: erp_loc_a101
+        description: The source table of customers location in silver layer
+
+      - name: kafka_orders
+        description: The source table of streaming orders data in silver layer
+        loaded_at_field: kafka_timestamp
+        freshness: 
+          error_after: {count: 2, period: day}
+          warn_after: {count: 1, period: day}
+        

@@ -1,0 +1,153 @@
+
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Dimension table for customers"
+    columns:
+      - name: customer_key
+        description: "The surrogate key for this table"
+        data_tests:
+          - unique
+          - not_null 
+      
+      - name: customer_id
+        description: "The natural key for this table, which is the customer ID from the source system"
+        data_tests:
+          - unique
+          - not_null
+          
+      
+      - name: customer_number
+        description: "The customer number from the source system"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: country
+        description: "The country of the customer"
+        data_tests:
+          - not_null
+
+      - name: marital_status
+        description: "The marital status of the customer"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Single', 'Married', 'Divorced', 'Widowed', 'Unknown']
+      
+      - name: gender
+        description: "The customer gender"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ['Male', 'Female', 'Unknown']
+
+      - name: birth_date
+        description: "The birth date of the customer"
+      
+      - name: creation_date
+        description: "The date when the customer record was created in the source system"
+        data_tests:
+          - not_null
+  
+
+  - name: dim_products
+    description: "Dimension table for products"
+    columns:
+      - name: product_key
+        description: "The surrogate key for this table"
+        data_tests:
+          - unique
+          - not_null
+      
+      - name: product_id
+        description: "The natural key for this table, which is the product ID from the source system"
+        data_tests:
+          - unique
+          - not_null
+      
+      - name: product_number
+        description: "The product number from the source system"
+        data_tests:
+          - unique
+          - not_null
+          
+
+      - name: category_id
+        description: "The category ID of the product from the source system"
+        data_tests:
+          - not_null
+
+      - name: subcategory
+        description: "The subcategory of the product from the source system"
+        
+
+      - name: product_name
+        description: "The name of the product"
+        data_tests:
+          - not_null
+
+      - name: start_date
+        description: "The date when the product record was created/updated in the source system"
+        data_tests:
+          - not_null
+
+  - name: fact_orders
+    description: "Fact table for orders"
+    columns:
+      - name: order_number
+        description: "order number from the source system, which is a natural key for this table"
+        data_tests:
+          - not_null
+      
+      - name: product_key
+        description: "The natural key for this table, which is the product key from the source system"
+        data_tests:
+          - not_null
+          - relationships:
+              field: product_key
+              to: ref('dim_products')
+      
+      - name: customer_key
+        description: "The foreign key to the dim_customers table"
+        data_tests:
+          - relationships:
+              field: customer_key
+              to: ref('dim_customers')
+
+      - name: order_date
+        description: "The date when the order was placed"
+
+      - name: ship_date
+        description: "The date when the order was shipped"
+        data_tests:
+          - not_null
+
+      - name: due_date
+        description: "The due date for the order"
+        data_tests:
+          - not_null
+
+      - name: sales_amount
+        description: "amount paid for the order"
+      
+      - name: quantity
+        description: "The quantity of the product ordered"
+        data_tests:
+          - not_null
+      
+      - name: price
+        description: "The price of the product at the time of the order"
+      
+      - name: kafka_timestamp
+        description: "The timestamp when the order record was ingested into the source system, which is used for incremental loading and freshness testing"
+        data_tests:
+          - unique
+      
+      - name: is_synthetic
+        description: "A flag to indicate whether the order record is synthetic or not, which is used for testing purposes"
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [True, False]
