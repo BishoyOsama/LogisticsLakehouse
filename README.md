@@ -213,6 +213,25 @@ Key Python packages (see `requirements.txt`):
 - `faker` - Synthetic data generation
 - `pandas` - Data manipulation
 
+## Screenshots
+
+### Data Lineage in Kafka
+<img src="./data_lineage_kafka.png" width="100%"/>
+
+### Airflow DAGs
+<img src="airflow trigger dag.png" width="100%"/>
+A sequence of dags may contain one or more task each all triggered by this one dag 
+
+
+### Databricks Jobs
+<img src="./databricks_jobs.png" width="100%"/>
+<strong>Bronze</strong> and <strong>Silver</strong> jobs orchestrated through airflow
+
+
+### Gold Layer Tables
+<img src="./data_model.png" width="100%"/>
+This the gold layer data model <strong>(star schema)</strong> previewed on power bi connected to databricks schema, you can move further with this project and do your analysis and visualizations, <strong>remember that orders data is synthetic.</strong>
+
 ## Analytics Integration
 
 The Gold layer data is ready for consumption by BI tools such as Power BI, Tableau, or Looker. Connect using Import mode for cached performance or DirectQuery/Live Connection for real-time analysis.

@@ -9,7 +9,7 @@ with DAG(
     'trigger_dags',
     description='A DAG to trigger other DAGs in defined architectural sequence',
     default_args=default_args,
-    schedule=None
+    schedule='0 9 * * *'
 ) as dag:
      
     trigger_produce_messages = TriggerDagRunOperator(
